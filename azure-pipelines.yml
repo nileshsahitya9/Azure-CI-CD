@@ -16,6 +16,5 @@ stages:
     jobs:
       - job: Test
         steps: 
-          - bash: |
-              test -f build/laptop.txt
+          - script: test -f build/laptop.txt
   
