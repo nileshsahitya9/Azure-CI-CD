@@ -1,9 +1,20 @@
 stages:
   - stage: Build
-    displayName: Build and push stage
+    displayName: Build Laptop
     jobs:  
     - job: Build
-    - job: Build1
-    - job: Build2
-      displayName: Build job
+      steps:
+        - bash: | 
+              echo "Building a laptop"
+              mkdir build
+              echo "MainBoard" >> build/laptop.txt
+              cat build/laptop.txt
+              echo "Keyboard" >> build/laptop.txt
+  - stage: Test
+    displayName: Test Laptop
+    jobs:
+      - job: Test
+        steps: 
+          - bash: |
+              test -f build/laptop.txt
   
