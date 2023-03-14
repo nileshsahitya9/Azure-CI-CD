@@ -11,11 +11,17 @@ stages:
               cat build/laptop.txt
               echo "Keyboard" >> build/laptop.txt
               cat build/laptop.txt
-    - job: Test
-      dependsOn: ['Build']
-      steps: 
-        - bash: |
+        - publish: build
+          displayName: 'Publish powershell scripts for later use'
+          artifact: dropScripts
+  - stage: Test
+    dependsOn: Build
+    displayName: Test Laptop
+    jobs:
+      - job: Test
+        steps: 
+        - download: current
+          artifact: dropScripts
+        - bash: | 
             cat build/laptop.txt
-            test -f build/laptop.txt
-      
   
