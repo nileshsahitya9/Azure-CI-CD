@@ -12,6 +12,7 @@ stages:
               echo "Keyboard" >> build/laptop.txt
               cat build/laptop.txt
     - job: Test
+      dependsOn: ['Build']
       steps: 
         - script: test -f build/laptop.txt
       
