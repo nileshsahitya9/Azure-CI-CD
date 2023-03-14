@@ -21,6 +21,6 @@ stages:
       - job: Test
         steps: 
         - download: current
-          artifact: Build
+          artifact: build
         - script: test -f build/laptop.txt
   
