@@ -24,5 +24,6 @@ stages:
         - download: current
           artifact: drop
         - bash: | 
+            mv /home/vsts/work/1/drop/laptop.txt .
             cat build/laptop.txt
   
