@@ -14,6 +14,6 @@ stages:
     - job: Test
       dependsOn: ['Build']
       steps: 
-        - script: test -f build/laptop.txt
+        - bash: test -f build/laptop.txt
       
   
