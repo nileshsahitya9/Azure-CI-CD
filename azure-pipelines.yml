@@ -12,6 +12,7 @@ stages:
               echo "Keyboard" >> build/laptop.txt
               cat build/laptop.txt
   - stage: Test
+    dependsOn: Build
     displayName: Test Laptop
     jobs:
       - job: Test
