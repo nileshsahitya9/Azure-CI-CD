@@ -13,7 +13,7 @@ stages:
               cat build/laptop.txt
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: $(Build.ArtifactStagingDirectory) # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
+            PathtoPublish: build # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
             ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
   - stage: Test
     dependsOn: Build
@@ -24,8 +24,6 @@ stages:
         - download: current
           artifact: drop
         - bash: | 
-            mv /home/vsts/work/1/drop/laptop.txt .
-            ls
-            echo $(Build.ArtifactStagingDirectory)
+            cat /home/vsts/work/1/drop/laptop.txt
 
   
