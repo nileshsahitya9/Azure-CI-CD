@@ -11,7 +11,7 @@ stages:
               cat build/laptop.txt
               echo "Keyboard" >> build/laptop.txt
               cat build/laptop.txt
-        - publish: '$(Build.ArtifactStagingDirectory)/scripts'
+        - publish: build
           displayName: 'Publish powershell scripts for later use'
           artifact: dropScripts
   - stage: Test
