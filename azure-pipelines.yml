@@ -6,6 +6,4 @@ stages:
     - job: Build1
     - job: Build2
       displayName: Build job
-    pool:
-      vmImage: alpine
   
