@@ -11,9 +11,11 @@ stages:
               cat build/laptop.txt
               echo "Keyboard" >> build/laptop.txt
               cat build/laptop.txt
-        - publish: build
-          displayName: 'Publish powershell scripts for later use'
-          artifact: dropScripts
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)' # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
+            ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
+            publishLocation: 'Container'
   - stage: Test
     dependsOn: Build
     displayName: Test Laptop
@@ -21,7 +23,7 @@ stages:
       - job: Test
         steps: 
         - download: current
-          artifact: dropScripts
+          artifact: drop
         - bash: | 
             cat build/laptop.txt
   
