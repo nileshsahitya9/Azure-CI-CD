@@ -13,9 +13,8 @@ stages:
               cat build/laptop.txt
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)' # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
+            PathtoPublish: build # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
             ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
-            publishLocation: 'Container'
   - stage: Test
     dependsOn: Build
     displayName: Test Laptop
