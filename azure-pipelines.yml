@@ -10,6 +10,7 @@ stages:
               echo "MainBoard" >> build/laptop.txt
               cat build/laptop.txt
               echo "Keyboard" >> build/laptop.txt
+              cat build/laptop.txt
   - stage: Test
     displayName: Test Laptop
     jobs:
