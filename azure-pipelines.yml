@@ -25,5 +25,7 @@ stages:
           artifact: drop
         - bash: | 
             mv /home/vsts/work/1/drop/laptop.txt .
-            cat build/laptop.txt
+            ls
+            echo $(Build.ArtifactStagingDirectory)
+
   
