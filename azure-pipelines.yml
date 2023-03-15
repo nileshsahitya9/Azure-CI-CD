@@ -5,10 +5,13 @@ stages:
     - job: Build
       steps:
         - bash: | 
-            $(Build.ArtifactStagingDirectory)
              yarn install
              yarn build
-             
+
+        - task: CopyFiles@2
+          inputs:
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: $(Build.ArtifactStagingDirectory) 
@@ -21,7 +24,7 @@ stages:
           artifact: drop
         - bash: |
             ls
-            $(Build.StagingDirectory)
+            $(Build.ArtifactStagingDirectory)
             test -f /build/index.html
 
     - job: Test
