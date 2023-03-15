@@ -15,14 +15,12 @@ stages:
   
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: $(Build.ArtifactStagingDirectory) 
-            ArtifactName: drop
+            PathtoPublish: $(Build.ArtifactStagingDirectory)
     - job: Verifying
       dependsOn: Build
       displayName: verifying build folder
       steps:
         - download: current
-          artifact: drop
         - bash: |
             echo "$(Build.ArtifactStagingDirectory)"
             ls $(Build.ArtifactStagingDirectory)/drop
