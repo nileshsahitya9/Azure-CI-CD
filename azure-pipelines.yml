@@ -26,7 +26,7 @@ stages:
         - bash: |
            $(Build.ArtifactStagingDirectory)
             mv /home/vsts/work/1/drop/ .
-            ls
+            ls $(Build.ArtifactStagingDirectory)
             test -f /build/index.html
 
     - job: Test
