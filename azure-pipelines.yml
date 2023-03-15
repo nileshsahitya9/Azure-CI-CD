@@ -5,13 +5,13 @@ stages:
     - job: Build
       steps:
         - bash: | 
-            $(Build.StagingDirectory)
+            $(Build.ArtifactStagingDirectory)
              yarn install
              yarn build
              
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: $(Build.StagingDirectory) 
+            PathtoPublish: $(Build.ArtifactStagingDirectory) 
             ArtifactName: drop
     - job: Verifying
       dependsOn: Build
