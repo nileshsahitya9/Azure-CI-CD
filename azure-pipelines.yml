@@ -28,7 +28,8 @@ stages:
           downloadPath: '$(System.ArtifactsDirectory)'
       - bash: |
             echo "$(System.ArtifactsDirectory)"
-            ls $(Build.ArtifactStagingDirectory)/drop
+            mv $(Build.ArtifactStagingDirectory)/drop/* .
+            ls
             test -f /build/index.html
 
     - job: Test
