@@ -36,5 +36,4 @@ stages:
       steps:
        - bash: |
             yarn install
-            yarn test
-            a
+            yarn test  --watchAll=false
