@@ -24,8 +24,8 @@ stages:
         - download: current
           artifact: drop
         - bash: |
-            ls /home/vsts/work/1/drop/
-            $(Build.ArtifactStagingDirectory)
+            mv /home/vsts/work/1/drop/ .
+            ls
             test -f /build/index.html
 
     - job: Test
