@@ -15,7 +15,7 @@ stages:
   
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: $(Build.ArtifactStagingDirectory)
+            PathtoPublish: .
     - job: Verifying
       dependsOn: Build
       displayName: verifying build folder
