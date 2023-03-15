@@ -7,11 +7,20 @@ stages:
         - bash: | 
              yarn install
              yarn build
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: $(Build.StagingDirectory) 
+            ArtifactName: drop
     - job: Verifying
       dependsOn: Build
       displayName: verifying build folder
       steps:
-        - bash: test -f /build/index.html
+        - download: current
+          artifact: drop
+        - bash: |
+            ls
+            $(Build.StagingDirectory)
+            test -f /build/index.html
 
     - job: Test
       dependsOn: Verifying
