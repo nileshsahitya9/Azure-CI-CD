@@ -27,13 +27,18 @@ stages:
           artifactName: drop
           downloadPath: '$(System.ArtifactsDirectory)'
       - bash: |
-            echo "$(System.ArtifactsDirectory)"
             mv $(Build.ArtifactStagingDirectory)/drop/* .
-            ls /build
-            test -f /build/index.html
+            test -f build/index.html
 
     - job: Test
       dependsOn: Verifying
       displayName: Running Test
       steps:
-        - bash: yarn test
+       - task: DownloadBuildArtifacts@0
+         inputs:
+          buildType: current
+          artifactName: drop
+          downloadPath: '$(System.ArtifactsDirectory)'
+       - bash: |
+            mv $(Build.ArtifactStagingDirectory)/drop/* .
+            yarn test
