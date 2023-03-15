@@ -5,9 +5,10 @@ stages:
     - job: Build
       steps:
         - bash: | 
+            $(Build.StagingDirectory)
              yarn install
              yarn build
-             $(Build.StagingDirectory)
+             
         - task: PublishBuildArtifacts@1
           inputs:
             PathtoPublish: $(Build.StagingDirectory) 
