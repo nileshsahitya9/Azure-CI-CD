@@ -7,3 +7,12 @@ stages:
         - bash: | 
              yarn install
              yarn build
+    - job: Verifying
+      displayName: verifying build folder
+      steps:
+        - bash: test -f /build/index.html
+
+    - job: Test
+      displayName: Running Test
+      steps:
+        - bash: yarn test
