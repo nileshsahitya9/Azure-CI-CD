@@ -8,11 +8,13 @@ stages:
              yarn install
              yarn build
     - job: Verifying
+      dependsOn: Build
       displayName: verifying build folder
       steps:
         - bash: test -f /build/index.html
 
     - job: Test
+      dependsOn: Verifying
       displayName: Running Test
       steps:
         - bash: yarn test
