@@ -1,29 +1,9 @@
 stages:
   - stage: Build
-    displayName: Build Laptop
+    displayName: Build Website
     jobs:  
     - job: Build
       steps:
         - bash: | 
-              echo "Building a laptop"
-              mkdir build
-              echo "MainBoard" >> build/laptop.txt
-              cat build/laptop.txt
-              echo "Keyboard" >> build/laptop.txt
-              cat build/laptop.txt
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: build # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
-            ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
-  - stage: Test
-    dependsOn: Build
-    displayName: Test Laptop
-    jobs:
-      - job: Test
-        steps: 
-        - download: current
-          artifact: drop
-        - bash: | 
-            cat /home/vsts/work/1/drop/laptop.txt
-
-  
+             yarn install
+             yarn build
