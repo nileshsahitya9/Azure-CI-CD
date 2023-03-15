@@ -15,14 +15,19 @@ stages:
   
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: /
+            PathtoPublish: $(Build.ArtifactStagingDirectory)
+            ArtifactName: drop
     - job: Verifying
       dependsOn: Build
       displayName: verifying build folder
       steps:
-        - download: current
-        - bash: |
-            echo "$(Build.ArtifactStagingDirectory)"
+      - task: DownloadBuildArtifacts@0
+        inputs:
+          buildType: current
+          artifactName: drop
+          downloadPath: '$(System.ArtifactsDirectory)'
+      - bash: |
+            echo "$(System.ArtifactsDirectory)"
             ls $(Build.ArtifactStagingDirectory)/drop
             test -f /build/index.html
 
