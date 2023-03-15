@@ -24,8 +24,8 @@ stages:
         - download: current
           artifact: drop
         - bash: |
-           $(Build.ArtifactStagingDirectory)
-            ls $(Build.ArtifactStagingDirectory)
+           $(Build.ArtifactStagingDirectory)/
+            ls $(Build.ArtifactStagingDirectory)/
             test -f /build/index.html
 
     - job: Test
