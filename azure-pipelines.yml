@@ -25,7 +25,7 @@ stages:
           artifact: drop
         - bash: |
             echo "$(Build.ArtifactStagingDirectory)"
-            tree $(Build.ArtifactStagingDirectory)/
+            ls $(Build.ArtifactStagingDirectory)/drop
             test -f /build/index.html
 
     - job: Test
