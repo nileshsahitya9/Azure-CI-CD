@@ -29,7 +29,7 @@ stages:
       - bash: |
             echo "$(System.ArtifactsDirectory)"
             mv $(Build.ArtifactStagingDirectory)/drop/* .
-            ls
+            ls /build
             test -f /build/index.html
 
     - job: Test
