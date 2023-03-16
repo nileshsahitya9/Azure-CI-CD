@@ -37,8 +37,9 @@ stages:
     displayName: Deploy to S3
     jobs:  
     - job: Deploy
-      pool:
-        vmImage: amazon/aws-cli
+      container:
+        image:  amazon/aws-cli:2.4.11
+        endpoint: ''
       steps:
-        - bash: | 
+        - bash: aws --version
 
