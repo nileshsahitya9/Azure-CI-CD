@@ -6,6 +6,7 @@ stages:
       steps:
         - bash: | 
              yarn install
+             yarn test  --watchAll=false
              yarn build
 
         - task: CopyFiles@2
@@ -17,6 +18,7 @@ stages:
           inputs:
             PathtoPublish: $(Build.ArtifactStagingDirectory)
             ArtifactName: drop
+            
     - job: Verifying
       dependsOn: Build
       displayName: verifying build folder
@@ -30,10 +32,13 @@ stages:
             mv $(Build.ArtifactStagingDirectory)/drop/* .
             test -f build/index.html
 
-    - job: Test
-      dependsOn: Verifying
-      displayName: Running Test
+
+  - stage: Deploy
+    displayName: Deploy to S3
+    jobs:  
+    - job: Deploy
+      pool:
+        vmImage: amazon/aws-cli
       steps:
-       - bash: |
-            yarn install
-            yarn test  --watchAll=false
+        - bash: | 
+
